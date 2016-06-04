@@ -27,7 +27,11 @@ void medirTemperaturaAgua() {
 }
 
 void medirLuminosidade() {
-  gLuminosidade = analogRead(gPinLuminosidade);
+  double v = analogRead(gPinLuminosidade);
+  
+  v = map(v, 0, 1023, 5, 0);
+  
+  gLuminosidade = (1000 * (5 - v)) / v;
 }
 
 void enviarSinal() {
